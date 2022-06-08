@@ -1,0 +1,483 @@
+{
+	"info": {
+		"_postman_id": "60d1338d-6224-4018-b934-2cc89d0d98b3",
+		"name": "SMS_API_TESTING",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21290285"
+	},
+	"item": [
+		{
+			"name": "TC_001_Add_New_Student",
+			"item": [
+				{
+					"name": "Add_New_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your last name checking\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.last_name).to.eql(\"Ganesh\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"first_name\": \"Shree\",\r\n  \"middle_name\": \"Ram\",\r\n  \"last_name\": \"Ganesh\",\r\n  \"date_of_birth\": \"12/11/1995\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						},
+						"description": "Adding new single student"
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch_Validate_SingleStudent_Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your Last name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.last_name).to.eql(\"Ganesh\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your Permenant state\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.date_of_birth).to.eql(\"12/11/1995\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your ID\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.id).to.eql(2665722);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2665722",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2665722"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_002_Add_Update_Student",
+			"item": [
+				{
+					"name": "Add_New_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your last name checking\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.last_name).to.eql(\"Ganesh\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Sanju\",\r\n  \"middle_name\": \"Ramesh\",\r\n  \"last_name\": \"Baba\",\r\n  \"date_of_birth\": \"12/1/1985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Student_Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validating statuscode is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response message checking\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"update  data success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 2665724,\r\n  \"first_name\": \"Sanjay\",\r\n  \"middle_name\": \"Ramesh\",\r\n  \"last_name\": \"Babu\",\r\n  \"date_of_birth\": \"01/08/1985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2665724",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2665724"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch_Student_Data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"GET method Status code is 200\", function () {\r",
+									"     pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"// chech header is present\r",
+									"pm.test(\"Content-Type header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"//check header value\r",
+									"pm.test(\"Server header value is correct\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Server header value is correct\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Content-Length\")).to.eql(\"132\");\r",
+									"});\r",
+									"\r",
+									"//Check the status code from array list\r",
+									"pm.test(\"Successful POST request, Validate status code from list\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+									"});\r",
+									"\r",
+									"//there should be 200 in list but if no then it will fail\r",
+									"/*\r",
+									"pm.test(\"Successful POST request, Validate status code from list if not matched\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([400, 201, 202]);\r",
+									"});\r",
+									"*/\r",
+									"\r",
+									"//validating response body data that may b anywhere is body \r",
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Sanjay\");\r",
+									"});\r",
+									"\r",
+									"//validating respose body data for particular key\r",
+									"pm.test(\"Your  second language is matched\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.date_of_birth).to.eql(\"01/08/1985\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Your  second language is matched\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.id).to.eql(2665724);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2665724",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2665724"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_004_Add_Student_Add_Address",
+			"item": [
+				{
+					"name": "Add_New_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your last name checking\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.last_name).to.eql(\"Baba\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Sanju\",\r\n  \"middle_name\": \"Ramesh\",\r\n  \"last_name\": \"Baba\",\r\n  \"date_of_birth\": \"12/1/1985\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TC_003_Add_Delete_Student",
+			"item": [
+				{
+					"name": "Add_New_Student",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Status code name has Created\", function () {\r",
+									"    pm.response.to.have.status(\"Created\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Date header is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"});\r",
+									"\r",
+									"//check header value\r",
+									"pm.test(\"Server header value is correct\", function () {\r",
+									"    pm.expect(pm.response.headers.get(\"Server\")).to.eql(\"Microsoft-IIS/8.5\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"sample\",\r\n  \"middle_name\": \"string 3\",\r\n  \"last_name\": \"sample string 4\",\r\n  \"date_of_birth\": \"11/11/1911\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Student_Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your Messgae :\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"Delete  data success\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 100ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2665732",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2665732"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate_StudentData_AfterDelete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Your Message \", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.eql(\"No data Found\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"false\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://thetestingworldapi.com/api/studentsDetails/2665732",
+							"protocol": "http",
+							"host": [
+								"thetestingworldapi",
+								"com"
+							],
+							"path": [
+								"api",
+								"studentsDetails",
+								"2665732"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative_TestCases",
+			"item": [
+				{
+					"name": "TC_005_Add_Student_InvalidJSONRequest",
+					"item": []
+				}
+			]
+		}
+	]
+}
